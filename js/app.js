@@ -5,24 +5,40 @@ const loadData = () => {
 };
 
 const displayCountry = (countries) => {
-  console.log(countries[0]);
+  // console.log(countries[0]);
   const country = countries.map((country) => getCountryHtml(country));
   const container = document.getElementById("countries");
   container.innerHTML = country.join(" ");
 };
 
-const getCountryHtml = (country) => {
+// original
+// const getCountryHtml = (country) => {
+//   //  destructureing
+//   const { flags, name, population, borders, languages } = country;
+
+//   // console.log(flags, name, population, borders, languages);
+
+//   return `
+//     <div class="country">
+//         <img src="${flags.png}">
+//         <h3>Country Name: ${name.common}</h3>
+//         <h3>population: ${population}</h3>
+//         <p>Borders : ${borders ? borders : "Not Found"}</p>
+//         <p>Languages : ${languages?.spa ? languages.spa : "Not Found"}</p>
+
+//     </div>
+//     `;
+// };
+
+// parameter destructureing
+const getCountryHtml = ({ name, flags, population, borders, languages }) => {
   return `
     <div class="country">
-        <img src="${country.flags.png}">
-        <h3>Country Name: ${country.name.common}</h3>    
-        <h3>population: ${country.population}</h3>   
-        <p>Borders : ${country?.borders ? country.borders : "Not Found"}</p>
-        <p>Languages : ${
-          country?.languages?.spa ? country.languages.spa : "Not Found"
-        }</p> 
-
-
+        <img src="${flags.png}">
+        <h3>Country Name: ${name.common}</h3>    
+        <h3>population: ${population}</h3>   
+        <p>Borders : ${borders ? borders : "Not Found"}</p>
+        <p>Languages : ${languages?.spa ? languages.spa : "Not Found"}</p> 
     </div>
     `;
 };
